@@ -1,0 +1,31 @@
+<mat-accordion >
+  <mat-expansion-panel *ngFor="let item of comisiones; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        N°Comision: {{ item.no_comision }} - Creada: {{ item.created_at | date: 'dd/MM/yyyy \'a\' hh:mm a' }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field fxLayout *ngFor="let lugares of item.lugares_comision; let j = index">
+
+      <mat-label> Inicio: {{ lugares.fecha_inicio | date: 'dd/MM/yyyy' }} - </mat-label>
+      
+      <mat-label> Final: {{ lugares.fecha_termino | date: 'dd/MM/yyyy' }} </mat-label>
+      <input matInput placeholder="Lugares" value="{{ lugares.sede }}" readonly>
+      <br>
+      <a> Total de Días: {{ lugares.total_dias }} </a>
+      <br>
+      <a> Cuota diaria: ${{ lugares.cuota_diaria }} </a> 
+  </mat-form-field>
+  
+
+
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+    </mat-expansion-panel>
+
+    <button mat-button>
+      <mat-icon (click)="editUser(element.id)">contacts</mat-icon>
+    </button>
+  </mat-accordion>
